@@ -1,0 +1,19 @@
+{% extends 'library/base.html' %} {% block content %}
+<h2 class="add_title">Создать книгу</h2>
+<section class="main__text">
+  <form action="" method="post" enctype="multipart/form-data" class="form-send">
+    {% csrf_token %}
+		<div class="fields">
+			{% for field in form %}
+			<div class="text-field">
+				<span class="text-field__label">{{field.label_tag}}</span>
+				{{field}}
+			</div>
+			{% endfor %}
+		<!-- {{ form.as_p }} это для отображения  в виде абзацов-->
+</div>
+    <button type="submit" class="btn btn-primary send" >Создать книгу</button>
+  </form>
+</section>
+
+{% endblock content %}

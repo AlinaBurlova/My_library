@@ -1,0 +1,43 @@
+{% extends 'library/base.html' %}
+{% load static %}
+{% block content %}
+<h2>Информация о книге № {{book.id}}</h2>
+<hr />
+<p>Автор - {{book.author}}</p>
+<p>Название - {{book.title}}</p>
+<p>Описание книги</p>
+<p>{{book.text}}</p>
+    {% if book.image %}
+    <img
+      src="{{book.image.url}}"
+      class="card-img-top"
+      alt="Картинка объявления"
+      style="width: 300px; height: 200px; object-fit: cover; border: 1px solid rgba(0, 0, 0, 0.175)"
+    />
+    {% else %}
+    <img
+      src="{% static 'img/no_image.png' %}"
+      class="card-img-top"
+      alt="Картинка объявления"
+      style="width: 300px; height: 200px; object-fit: cover; border: 1px solid rgba(0, 0, 0, 0.175)"
+    />
+    {% endif %}
+<br />
+<p>Создан: {{book.created_at}}</p>
+
+<div>
+  <a
+    href="{% url 'library:book_edit' slug=book.slug %}"
+    class="btn btn-primary"
+    >Редактировать</a
+  >
+  <form
+    action="{% url 'library:book_delete' slug=book.slug %}"
+    method="get"
+    style="display: inline"
+  >
+    {% csrf_token %}
+    <button type="submit" class="btn btn-danger">Удалить</button>
+  </form>
+</div>
+{% endblock content %}

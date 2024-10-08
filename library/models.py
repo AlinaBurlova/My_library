@@ -14,7 +14,7 @@ class Book(models.Model):
     text = models.TextField(verbose_name="Информация о книге")
     created_at = models.DateTimeField(default=timezone.now, verbose_name="Опубликовано", editable=False)
     file = models.FileField(upload_to='books/file/', blank=False, verbose_name="Файл (текст книги)")
-    image = models.ImageField(upload_to='books/image/', blank=True, verbose_name="Изображение")
+    image = models.ImageField(upload_to='books/image/', blank=True, verbose_name="Изображение (обложка)")
     slug = models.SlugField(max_length=200, unique=True, editable=False, blank=True)
 
     def save(self, *args, **kwargs):

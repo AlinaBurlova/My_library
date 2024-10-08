@@ -1,0 +1,17 @@
+{% extends 'users/base.html' %}
+{% block content %}
+
+<h2>Регистрация пользователя</h2>
+<form method="post">
+    {% csrf_token %}
+    		{% for field in register_form %}
+		<div class="text-field">
+			<span class="text-field__label">{{field.label_tag}}</span>
+			{{field}}
+    </div>
+        {% endfor %}
+
+    <button type="submit" class="btn btn-primary" style="margin: 20px 0;">Зарегистрироваться</button>
+</form>
+
+{% endblock content %}

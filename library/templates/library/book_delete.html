@@ -1,0 +1,36 @@
+{% extends 'library/base.html' %}
+{% load static %}
+{% block content %}
+<h1>Вы уверены, что хотите удалить эту книгу?</h1>
+<h2>Информация о книге № {{book.id}}</h2>
+<hr>
+<p>Автор - {{book.author}}</p>
+<p>Название - {{book.title}}</p>
+<p>Описание книги:</p>
+<p>{{book.text}}</p>
+    {% if book.image %}
+    <img
+      src="{{book.image.url}}"
+      class="card-img-top"
+      alt="Обложка книги"
+      style="width: 300px; height: 200px; object-fit: cover; border: 1px solid rgba(0, 0, 0, 0.175)"
+    />
+    {% else %}
+    <img
+      src="{% static 'img/no_image.png' %}"
+      class="card-img-top"
+      alt="Обложка книги"
+      style="width: 300px; height: 200px; object-fit: cover; border: 1px solid rgba(0, 0, 0, 0.175)"
+    />
+    {% endif %}
+<p>Создан: {{book.created_at}}</p>
+<form method="post" style="display: block;" align="center">
+    {% csrf_token %}
+    <button type="submit" class="btn btn-danger">Удалить</button>
+    <a href="{% url 'library:book_list'%}">
+        <button type="button" class="btn btn-primary">Отменить</button>
+    </a>
+
+</form>
+
+{% endblock content %}

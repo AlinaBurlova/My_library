@@ -1,0 +1,8 @@
+{% extends 'library/base.html' %} {% block content %}
+<h2>Редактировать книгу</h2>
+<form action="" method="post" enctype="multipart/form-data">
+  {% csrf_token %} {{ form.as_p }}
+  <button type="submit" class="btn btn-primary" style="margin-bottom: 20px">Редактировать книгу</button>
+</form>
+
+{% endblock content %}
