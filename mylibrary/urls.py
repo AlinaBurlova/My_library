@@ -1,5 +1,5 @@
 """
-URL configuration for MyLibrary project.
+URL configuration for mylibrary project.
 
 The `urlpatterns` list routes URLs to views. For more information please see:
     https://docs.djangoproject.com/en/5.1/topics/http/urls/
@@ -14,9 +14,23 @@ Including another URLconf
     1. Import the include() function: from django.urls import include, path
     2. Add a URL to urlpatterns:  path('blog/', include('blog.urls'))
 """
+from django.conf.urls.static import static
 from django.contrib import admin
-from django.urls import path
+from django.urls import path, include
+from mylibrary import settings
+from library.views import root
+
 
 urlpatterns = [
+    path('', root),
     path('admin/', admin.site.urls),
+    path('library/', include('library.urls')),
+    path('users/', include('users.urls')),
 ]
+
+if settings.DEBUG:
+    urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
+
+handler403 = "library.views.forbidden"
+handler404 = "library.views.page_not_found"
+handler500 = "library.views.server_error"
