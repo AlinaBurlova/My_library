@@ -1,34 +1,52 @@
 {% extends 'library/base.html' %}
 {% load static %}
 {% block content %}
-<h2>Информация о книге № {{book.id}}</h2>
-<hr />
-<p>Автор - {{book.author}}</p>
-<p>Название - {{book.title}}</p>
-<p>Описание книги</p>
-<p>{{book.text}}</p>
+<div class="book_section">
+<h2 style="opacity: 1;">Информация о книге № {{book.id}}</h2>
+<div class="card text-white bg-dark mb-3" style="width: 60%;">
+  <div class="row g-0">
+    <div class="col-md-3">
     {% if book.image %}
     <img
       src="{{book.image.url}}"
-      class="card-img-top"
-      alt="Картинка объявления"
-      style="width: 300px; height: 200px; object-fit: cover; border: 1px solid rgba(0, 0, 0, 0.175)"
+      class="img-fluid rounded-start"
+      alt="Обложка книги"
+      style="width: 100%; height: 100%; object-fit: cover; border: 1px solid rgba(0, 0, 0, 0.175)"
     />
     {% else %}
     <img
       src="{% static 'img/no_image.png' %}"
-      class="card-img-top"
-      alt="Картинка объявления"
-      style="width: 300px; height: 200px; object-fit: cover; border: 1px solid rgba(0, 0, 0, 0.175)"
+      class="img-fluid rounded-start"
+      alt="Обложка книги"
+      style="width: 100%; height: 100%; object-fit: cover; border: 1px solid rgba(0, 0, 0, 0.175)"
     />
     {% endif %}
-<br />
-<p>Создан: {{book.created_at}}</p>
+    </div>
+    <div class="col-md-8">
+      <div class="card-header">
+        {{book.author}}</div>
+      <div class="card-body">
+        <h5 class="card-title">{{book.title}}</h5>
+        <p class="card-text" style="margin: 0;">Описание книги:</p>
+        <p class="card-text" style="margin: 0;">{{book.text}}</p>
+      </div>
+      <div class="card-footer book_data">{{book.created_at}}</div>
+    </div>
+  </div>
+</div>
 
-<div>
+    {% if book.file %}
+        <a href='{{book.file.url}}'>Посмотреть текст книги</a>
+    {% else %}
+        <p>Ссылка на скачивание исчезла :(</p>
+    {% endif %}
+<br />
+
+{% if user == book.author %}
+    <div>
   <a
     href="{% url 'library:book_edit' slug=book.slug %}"
-    class="btn btn-primary"
+    class="btn btn-secondary"
     >Редактировать</a
   >
   <form
@@ -40,4 +58,6 @@
     <button type="submit" class="btn btn-danger">Удалить</button>
   </form>
 </div>
+{% endif %}
+  </div>
 {% endblock content %}

@@ -1,15 +1,69 @@
 {% extends 'users/base.html' %}
 {% block content %}
-
+{% load static %}
+<div class="profile_section">
 <h2>Ваш профиль</h2>
-<p>Логин - {{ user.username }}</p>
-<p>ФИ - {{ user.last_name }} {{ user.first_name }}</p>
-<p>Почта - {{ user.email }}</p>
-<p>Телефон - {{ user.phone }}</p>
-<p>Город - {{ user.city }}</p>
-<hr>
-<p>Дата регистрации - {{ user.date_joined|date:'d:m:Y H:i'}}</p>
-<hr>
-<a href="{% url 'users:change_password' %}">Изменить пароль</a>
+<div class="container_profile">
+<div class="profile_row">
+<img src="{% static 'img/profile.jpg' %}" style="width: 150px;" alt="Профильное фото"/>
+<h5>{{ user.username }}</h5>
+</div>
+<div class="profile_row">
+<div class="profile-work">
+<p>Доступные действия:</p>
+<a href="{% url 'library:add_book' %}">Опубликовать книгу</a><br/>
+<a href="{% url 'library:book_list' %}">Посмотреть книги</a><br/>
+<a href="{% url 'users:change_password' %}">Изменить пароль</a><br/>
+<a href="{% url 'users:logout' %}">Выйти</a><br/>
+</div>
 
+<div>
+<div class="tab-content profile-tab">
+<div class="tab-pane fade show active" aria-labelledby="home-tab">
+<div class="row">
+<div class="col-md-6">
+ <label>Никнейм</label>
+</div>
+<div class="col-md-6">
+<p>{{ user.username }}</p>
+</div>
+</div>
+<div class="row">
+ <div class="col-md-6">
+<label>Фамилия Имя</label>
+</div>
+<div class="col-md-6">
+  <p>{{ user.last_name }} {{ user.first_name }}</p>
+</div>
+</div>
+<div class="row">
+<div class="col-md-6">
+<label>Почта</label>
+</div>
+<div class="col-md-6">
+<p>{{ user.email }}</p>
+</div>
+</div>
+<div class="row">
+<div class="col-md-6">
+<label>Телефон</label>
+</div>
+<div class="col-md-6">
+<p>{{ user.phone }}</p>
+</div>
+</div>
+<div class="row">
+<div class="col-md-6">
+<label>Город</label>
+</div>
+<div class="col-md-6">
+<p>{{ user.city }}</p>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+    </div>
 {% endblock content %}

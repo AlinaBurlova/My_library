@@ -1,6 +1,6 @@
 {% extends 'library/base.html' %} {% block content %}
 <div class="main__index">
-  <h2 class="main__index__title">Создай свою книгу!</h2>
+  <h2 class="main__index__title">Опубликуй свою книгу!</h2>
 </div>
 <div class="main__tittle">
   <p>Простота и легкость - наш девиз!</p>
@@ -16,10 +16,10 @@
 	</secton>
   <secton class="main__info__min">
 			<p class="main__info__min__circle">3</p>
-			<p class="main__info__min__text">Нажми на кнопку 'Создать книгу'</p>
+			<p class="main__info__min__text">Нажми на кнопку 'Опубликовать книгу'</p>
 	</secton>
 </div>
-<a href="{% url 'blog:add_advertisement' %}" class="advertisement_slk">Перейти к созданию книги</a>
+<a href="{% url 'library:add_book' %}" class="book_slk">Перейти к созданию книги</a>
 
 
 {% endblock content %}

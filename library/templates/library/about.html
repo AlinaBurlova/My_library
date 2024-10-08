@@ -1,9 +1,45 @@
 {% extends 'library/base.html' %} {% block content %}
-<h2>Контакты</h2>
+{% load static %}
+<h2>О нас</h2>
+<div class="about_section">
+<div class="row row-cols-1 row-cols-md-3 g-4" style="width: 80%;">
+    <div class="col">
+    <div class="card h-100">
+      <img src="{% static 'img/about_2.jpg' %}" class="card-img-top" alt="КартинкаО1">
+      <div class="card-body">
+        <h5 class="card-title">Удобство</h5>
+        <p class="card-text">Опубликуй или почитай книгу прямо из дома!</p>
+      </div>
+    </div>
+  </div>
+  <div class="col">
+    <div class="card h-100">
+      <img src="{% static 'img/about_1.png' %}" class="card-img-top" alt="КартинкаО2">
+      <div class="card-body">
+        <h5 class="card-title">Возможности</h5>
+        <p class="card-text">В нашем сервисе можно опубликовать 1000 книг!</p>
+      </div>
+    </div>
+  </div>
+  <div class="col">
+    <div class="card h-100">
+      <img src="{% static 'img/about_3.jpg' %}" class="card-img-top" alt="КартинкаО3">
+      <div class="card-body">
+        <h5 class="card-title">Доступность</h5>
+        <p class="card-text">Сервис абсолютно бесплатный</p>
+      </div>
+    </div>
+  </div>
+
+</div>
+  </div>
+
+<div class="about_section">
 <div class="main__contacts">
   <section class="main__contacts__text">
-    <p>Автор: {{lastname}} {{name}}</p>
+    <p>Автор: {{name}}</p>
     <p>Email: {{email}}</p>
+    <p>Телефон: {{phone}}</p>
     <p>Адрес: {{address}}</p>
   </section>
   <div style="position: relative; overflow: hidden">
@@ -25,5 +61,5 @@
     ></iframe>
   </div>
 </div>
-
+</div>
 {% endblock content %}

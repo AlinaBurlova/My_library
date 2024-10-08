@@ -8,7 +8,7 @@
   style="gap: 20px; margin: 20px"
 >
   {% for book in books %}
-  <div class="card" style="width: 300px; height: 400px">
+  <div class="card text-white bg-dark" style="width: 300px; height: 400px">
     {% if book.image %}
     <img
       src="{{book.image.url}}"
@@ -24,15 +24,15 @@
       style="width: 100%; height: 200px; object-fit: cover"
     />
     {% endif %}
-    <div class="card-body" style="position: relative">
-      <div class="card-header" style="padding: var(--bs-card-cap-padding-y) 0">
+    <div class="card-header" >
         <p class="card-text">{{book.author}}</p>
       </div>
+    <div class="card-body" style="position: relative">
       <h5 class="card-title">{{book.title}}</h5>
       <p class="card-text text-min">{{book.text}}</p>
       <a
         href="{{ book.get_absolute_url }}"
-        class="btn btn-primary"
+        class="btn btn-secondary"
         style="position: absolute; bottom: 5%"
         >Подробнее</a
       >

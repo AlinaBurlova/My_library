@@ -14,9 +14,10 @@ def index(request):
 
 def about(request):
     context = {
-        'name': 'Алина',
-        'lastname': 'Бурлова',
-        'email': 'alina-burlova@mail.ru',
+        'name': 'БиблиоЦентр',
+        'email': 'bibliocentre@mail.ru',
+        'phone': '+7 (999) 999-99-99',
+        'address': 'м. Невский проспект',
         'title': "О сайте"
     }
     return render(request, template_name='library/about.html', context=context)
@@ -49,7 +50,7 @@ def book_list(request):
     books = Book.objects.all()
     context = {
         'title': "Книги",
-        'posts': books,
+        'books': books,
     }
     return render(request, template_name='library/books.html', context=context)
 
@@ -66,20 +67,21 @@ def book_detail(request, slug):
 @login_required
 def book_edit(request, slug):
     book = get_object_or_404(Book, slug=slug)
+    # if book.author == request.user:
+    user = request.user
     if request.method == "POST":
         form = BookForm(request.POST, request.FILES, instance=book, author=request.user)
         if form.is_valid():
             form.save()
-
             return book_list(request)
     else:
         form = BookForm(instance=book, author=request.user)
     context = {
             'form': form,
+            'user': user,
             'title': "Редактировать характеристики книги",
     }
     return render(request, template_name='library/book_edit.html', context=context)
-
 
 @login_required
 def book_delete(request, slug):
